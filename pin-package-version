@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ -z $2 ]; then
+   echo Usage: ./pin-package-version path/to/output/file package-version
+   exit 1
+fi
+
+cat > $1 << _EOF
+Package: netxms-*
+Pin: version $2
+Pin-Priority: 1001
+_EOF

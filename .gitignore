@@ -1,0 +1,4 @@
+/deployment-example/data/
+/web/*.war
+netxms-pin
+.env

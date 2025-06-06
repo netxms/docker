@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "https://www.eclipse.org/jetty/configure_12_0.dtd">
+
+<Configure class="org.eclipse.jetty.ee8.webapp.WebAppContext">
+    <Set name="contextPath">/</Set>
+    <Set name="war">/var/lib/jetty/webapps/ROOT.war</Set>
+    <Set name="extractWAR">true</Set>
+    <New class="org.eclipse.jetty.plus.jndi.EnvEntry">
+        <Arg>nxmc/server</Arg>
+        <Arg>server</Arg>
+        <Arg type="boolean">true</Arg>
+    </New>
+</Configure>

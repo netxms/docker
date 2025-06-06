@@ -1,0 +1,98 @@
+services:
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U netxms"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./conf/pg/postgresql.conf:/etc/postgresql/postgresql.conf
+
+  server:
+    image: ghcr.io/netxms/server:${NETXMS_VERSION:?NETXMS_VERSION environment variable is required}
+    platform: linux/amd64
+    hostname: server
+    depends_on:
+      db:
+        condition: service_healthy
+      agent:
+        condition: service_started
+      init:
+        condition: service_completed_successfully
+    volumes:
+      - ./conf/server/netxmsd.conf:/etc/netxmsd.conf
+      - ./conf/server/etc-netxms:/etc/netxms
+      - server-var:/var/lib/netxms
+    ports:
+      - 48920:4701
+      - 48921:4703
+
+  agent:
+    image: ghcr.io/netxms/agent:${NETXMS_VERSION:?NETXMS_VERSION environment variable is required}
+    platform: linux/amd64
+    volumes:
+      - ./conf/agent/nxagentd.conf:/etc/nxagentd.conf
+      - agent-var:/var/lib/netxms
+
+  web:
+    image: ghcr.io/netxms/web:${NETXMS_VERSION:?NETXMS_VERSION environment variable is required}
+    ports:
+      - 8443:8443
+    # environment:
+    #   - JAVA_OPTIONS="-Xmx1g"
+
+  init:
+    image: ghcr.io/netxms/server:${NETXMS_VERSION:?NETXMS_VERSION environment variable is required}
+    platform: linux/amd64
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./conf/server/netxmsd.conf:/etc/netxmsd.conf
+    entrypoint: /dbinit.sh
+
+  unlock:
+    image: ghcr.io/netxms/server:${NETXMS_VERSION:?NETXMS_VERSION environment variable is required}
+    platform: linux/amd64
+    depends_on:
+      db:
+        condition: service_healthy
+      init:
+        condition: service_completed_successfully
+    volumes:
+      - ./conf/server/netxmsd.conf:/etc/netxmsd.conf
+    entrypoint: ["/usr/bin/nxdbmgr", "-f", "unlock"]
+
+  check:
+    image: ghcr.io/netxms/server:${NETXMS_VERSION:?NETXMS_VERSION environment variable is required}
+    platform: linux/amd64
+    depends_on:
+      db:
+        condition: service_healthy
+      init:
+        condition: service_completed_successfully
+    volumes:
+      - ./conf/server/netxmsd.conf:/etc/netxmsd.conf
+    entrypoint: ["/usr/bin/nxdbmgr", "-f", "check"]
+
+  upgrade:
+    image: ghcr.io/netxms/server:${NETXMS_VERSION:?NETXMS_VERSION environment variable is required}
+    platform: linux/amd64
+    depends_on:
+      db:
+        condition: service_healthy
+      init:
+        condition: service_completed_successfully
+    volumes:
+      - ./conf/server/netxmsd.conf:/etc/netxmsd.conf
+    entrypoint: ["/usr/bin/nxdbmgr", "-f", "upgrade"]
+
+volumes:
+  db-data:
+  server-var:
+  agent-var:
