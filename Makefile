@@ -1,9 +1,9 @@
-.PHONY: all agent server web clean-pin
+.PHONY: all agent server server-e2e web clean-pin
 
 V=$(shell grep '^NETXMS_VERSION=' build.properties | cut -d= -f2)
 PV=$(shell grep '^NETXMS_PACKAGE_VERSION=' build.properties | cut -d= -f2)
 
-all: agent server web
+all: agent server server-e2e web
 
 agent:
 	./pin-package-version agent/files/netxms-pin $(PV)
@@ -14,6 +14,11 @@ server:
 	./pin-package-version server/files/netxms-pin $(PV)
 	docker build --progress=plain --platform linux/amd64 --build-arg NETXMS_PACKAGE_VERSION=$(PV) -t ghcr.io/netxms/server:$(V) server
 	@rm server/files/netxms-pin
+
+server-e2e:
+	./pin-package-version server-e2e/files/netxms-pin $(PV)
+	docker build --progress=plain --platform linux/amd64 --build-arg NETXMS_PACKAGE_VERSION=$(PV) -t ghcr.io/netxms/server-e2e:$(V) server-e2e
+	@rm server-e2e/files/netxms-pin
 
 web:
 	@if [ ! -f web/nxmc-$(V).war ]; then \

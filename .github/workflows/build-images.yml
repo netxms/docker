@@ -26,7 +26,7 @@ jobs:
 
     strategy:
       matrix:
-        component: [agent, server, web]
+        component: [agent, server, server-e2e, web]
 
     steps:
       - name: Checkout repository
@@ -176,6 +176,7 @@ jobs:
             ## Images
             - `${{ env.IMAGE_PREFIX }}/agent:${{ steps.version.outputs.netxms_version }}`
             - `${{ env.IMAGE_PREFIX }}/server:${{ steps.version.outputs.netxms_version }}`
+            - `${{ env.IMAGE_PREFIX }}/server-e2e:${{ steps.version.outputs.netxms_version }}`
             - `${{ env.IMAGE_PREFIX }}/web:${{ steps.version.outputs.netxms_version }}`
 
             ## Usage
