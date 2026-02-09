@@ -10,6 +10,6 @@ COPY ROOT.xml /var/lib/jetty/webapps/
 EXPOSE 8080/tcp
 EXPOSE 8443/tcp
 
-RUN java -jar $JETTY_HOME/start.jar --add-modules=https,ssl,http2,ee8-deploy,ee8-webapp,ee8-plus,gzip --approve-all-licenses
+RUN java -jar $JETTY_HOME/start.jar --add-modules=https,ssl,http2,ee10-deploy,ee10-webapp,ee10-plus,gzip --approve-all-licenses
 
 CMD ["/app/start.sh"]
