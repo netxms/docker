@@ -120,7 +120,12 @@ docker compose run --rm upgrade
 
 # Unlock database (if locked)
 docker compose run --rm unlock
+
+# Background schema upgrade (can be run when server is already running)
+docker compose run --rm background-upgrade
 ```
+
+The `background-upgrade` service uses a Compose profile and is excluded from `docker compose up`. Run it manually when needed.
 
 ## Development
 

@@ -92,6 +92,20 @@ services:
       - ./conf/server/netxmsd.conf:/etc/netxmsd.conf
     entrypoint: ["/usr/bin/nxdbmgr", "-f", "upgrade"]
 
+  background-upgrade:
+    image: ghcr.io/netxms/server:${NETXMS_VERSION:?NETXMS_VERSION environment variable is required}
+    platform: linux/amd64
+    profiles:
+      - manual
+    depends_on:
+      db:
+        condition: service_healthy
+      init:
+        condition: service_completed_successfully
+    volumes:
+      - ./conf/server/netxmsd.conf:/etc/netxmsd.conf
+    entrypoint: ["/usr/bin/nxdbmgr", "-f", "background-upgrade"]
+
 volumes:
   db-data:
   server-var:
