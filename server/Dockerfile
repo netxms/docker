@@ -8,7 +8,7 @@ COPY --chown=root:root files/netxms-keyring.gpg /etc/apt/trusted.gpg.d/
 ARG NETXMS_PACKAGE_VERSION
 COPY --chown=root:root files/netxms-pin /etc/apt/preferences.d/netxms-pin
 
-RUN apt-get update && apt-get install -y netxms-server netxms-dbdrv-pgsql netxms-dbdrv-mariadb && apt-get clean
+RUN apt-get update && apt-get install -y netxms-server=${NETXMS_PACKAGE_VERSION} netxms-dbdrv-pgsql=${NETXMS_PACKAGE_VERSION} netxms-dbdrv-mariadb=${NETXMS_PACKAGE_VERSION} && apt-get clean
 
 COPY files/dbinit.sh /
 

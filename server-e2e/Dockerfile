@@ -8,7 +8,7 @@ COPY --chown=root:root files/netxms-keyring.gpg /etc/apt/trusted.gpg.d/
 ARG NETXMS_PACKAGE_VERSION
 COPY --chown=root:root files/netxms-pin /etc/apt/preferences.d/netxms-pin
 
-RUN apt-get update && apt-get install -y netxms-server && apt-get clean
+RUN apt-get update && apt-get install -y netxms-server=${NETXMS_PACKAGE_VERSION} && apt-get clean
 
 VOLUME [ "/etc/netxms" ]
 VOLUME [ "/var/lib/netxms" ]
