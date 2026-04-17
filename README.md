@@ -85,7 +85,7 @@ Minimal required configuration:
 
 Edit `conf/agent/nxagentd.conf` to configure the monitoring agent.
 
-Reference: [netxmsd.conf](https://netxms.org/documentation/adminguide/appendix.html#agent-configuration-file-nxagentd-conf).
+Reference: [nxagentd.conf](https://netxms.org/documentation/adminguide/appendix.html#agent-configuration-file-nxagentd-conf).
 
 Minimal required configuration:
 
