@@ -220,5 +220,5 @@ The build system uses APT package pinning to ensure version consistency:
 **Agent connection problems:**
 
 - Check network connectivity between agent and server
-- Review agent logs for connection errors
+- Review agent logs for connection errors: `docker compose logs agent`
 - Verify server address in agent configuration
