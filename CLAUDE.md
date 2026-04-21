@@ -52,6 +52,9 @@ make clean-pin
 ### Database Initialization
 
 - Server container includes `dbinit.sh` for initial schema setup if it's empty
+- `dbinit.sh` auto-detects the database driver from `DBDriver` in `netxmsd.conf`
+- For PostgreSQL, the `NETXMS_PG_TYPE` environment variable selects between `pgsql` (default) and `tsdb` (TimescaleDB)
+- For MariaDB/MySQL, `nxdbmgr init` auto-detects the correct SQL template
 - Database management utilities available via `nxdbmgr` commands
 
 ## Configuration System

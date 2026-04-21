@@ -106,6 +106,23 @@ services:
       - KEYSTORE_PASSWORD=your_keystore_password
 ```
 
+## Database Driver Selection
+
+The database initialization script (`dbinit.sh`) automatically detects the database driver from the `DBDriver` setting in `netxmsd.conf`. Supported drivers:
+
+- **PostgreSQL** (`pgsql`): default, no additional configuration needed
+- **TimescaleDB**: set environment variable `NETXMS_PG_TYPE=tsdb` on the `init` service
+- **MariaDB/MySQL** (`mariadb` or `mysql`): set `DBDriver` in `netxmsd.conf` accordingly and swap the database image in `compose.yaml`
+
+Example for TimescaleDB:
+
+```yaml
+services:
+  init:
+    environment:
+      - NETXMS_PG_TYPE=tsdb
+```
+
 ## Database Operations
 
 ```sh
