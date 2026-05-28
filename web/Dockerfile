@@ -1,4 +1,4 @@
-FROM jetty:12.0-jdk21-alpine-amazoncorretto
+FROM jetty:12-jdk25-alpine-amazoncorretto
 
 ARG NETXMS_VERSION
 

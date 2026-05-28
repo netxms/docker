@@ -204,7 +204,7 @@ The workflow builds server and agent images for linux/amd64, and web images for 
 Versions are managed in `build.properties`:
 
 - `NETXMS_VERSION`: Product version (e.g., `5.2.3`)
-- `NETXMS_PACKAGE_VERSION`: Full Debian package version (e.g. `5.2.3-1+bookworm`)
+- `NETXMS_PACKAGE_VERSION`: Full Debian package version (e.g. `5.2.3-1+trixie`)
 
 To update versions:
 

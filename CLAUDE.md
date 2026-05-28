@@ -63,7 +63,7 @@ make clean-pin
 
 - `build.properties`: Central version configuration
 - `NETXMS_VERSION`: Product version (e.g., 5.2.3)
-- `NETXMS_PACKAGE_VERSION`: Debian package version (e.g., 5.2.3-1+bookworm)
+- `NETXMS_PACKAGE_VERSION`: Debian package version (e.g., 5.2.3-1+trixie)
 
 ### Package Pinning
 
