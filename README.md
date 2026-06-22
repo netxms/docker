@@ -91,7 +91,7 @@ Minimal required configuration:
 
 Edit `conf/agent/nxagentd.conf` to configure the monitoring agent.
 
-Reference: [netxmsd.conf](https://netxms.org/documentation/adminguide/appendix.html#agent-configuration-file-nxagentd-conf).
+Reference: [nxagentd.conf](https://netxms.org/documentation/adminguide/appendix.html#agent-configuration-file-nxagentd-conf).
 
 Minimal required configuration:
 
@@ -243,5 +243,5 @@ The build system uses APT package pinning to ensure version consistency:
 **Agent connection problems:**
 
 - Check network connectivity between agent and server
-- Review agent logs for connection errors
+- Review agent logs for connection errors: `docker compose logs agent`
 - Verify server address in agent configuration
