@@ -29,8 +29,8 @@ services:
       - ./conf/server/etc-netxms:/etc/netxms
       - server-var:/var/lib/netxms
     ports:
-      - 48920:4701
-      - 48921:4703
+      - 4701:4701
+      - 4703:4703
 
   agent:
     image: ghcr.io/netxms/agent:${NETXMS_VERSION:?NETXMS_VERSION environment variable is required}
