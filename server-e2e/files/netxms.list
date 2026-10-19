@@ -1,1 +1,1 @@
-deb http://packages.netxms.org/debian trixie main
+deb http://packages.netxms.org/7.x/debian trixie main
