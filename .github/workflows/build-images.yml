@@ -57,8 +57,8 @@ jobs:
         with:
           images: ${{ env.IMAGE_PREFIX }}/${{ matrix.component }}
           tags: |
-            type=semver,pattern={{version}},value=${{ github.ref_name }},prefix=release-,enable=${{ startsWith(github.ref, 'refs/tags/release-') }}
-            type=semver,pattern={{major}}.{{minor}},value=${{ github.ref_name }},prefix=release-,enable=${{ startsWith(github.ref, 'refs/tags/release-') }}
+            type=match,pattern=release-(\d+\.\d+\.\d+)$,group=1
+            type=match,pattern=release-(\d+\.\d+)\.\d+$,group=1
             type=raw,value=${{ steps.version.outputs.netxms_version }},enable=${{ startsWith(github.ref, 'refs/tags/release-') }}
             type=raw,value=latest,enable={{is_default_branch}}
 
