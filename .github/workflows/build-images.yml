@@ -226,7 +226,7 @@ jobs:
           NETXMS_VERSION=${{ steps.version.outputs.netxms_version }}
           POSTGRES_DB=netxms
           POSTGRES_USER=netxms
-          POSTGRES_PASSWORD=test_password
+          POSTGRES_PASSWORD=netxms
           EOF
 
           # Use locally built images for testing
