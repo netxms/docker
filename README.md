@@ -52,6 +52,16 @@ Images are also tagged with specific NetXMS versions (e.g., `5.2.3`).
 
 Note: **NEVER** use `:latest` in the production, always pin specific release.
 
+## Server E2E Fixture
+
+The `server-e2e` image bundles a disposable SQLite database with seeded test data and the WebAPI enabled on port 8000. It runs on `linux/amd64`.
+
+The following API key is public and intended only for tests against this fixture. It authenticates as the fixture's `admin` user and expires on 2038-01-01 14:35:32 UTC.
+
+```sh
+NX_API_KEY=dsly7ba3yqntvcsj6tkgi53ie4zaez6n
+```
+
 ## Deployment
 
 ### Environment Setup

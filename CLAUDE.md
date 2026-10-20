@@ -6,11 +6,12 @@ Important: do not write comments. Do not explain what are you doing. Do NOT comm
 
 ## Project Overview
 
-This repository contains Docker containerization for NetXMS (Network Management System), providing three main components:
+This repository contains Docker containerization for NetXMS (Network Management System), providing four main components:
 
 - **Server**: NetXMS monitoring server with PostgreSQL database support
 - **Agent**: NetXMS monitoring agent for collecting system metrics
 - **Web**: Jetty-based web interface for NetXMS management console
+- **Server E2E**: Disposable SQLite test server with seeded data, WebAPI, and a public fixture API key
 
 ## Build Commands
 
@@ -38,7 +39,7 @@ make clean-pin
 
 ### Component Structure
 
-- Each component (agent, server, web) has its own Dockerfile and supporting files
+- Each component (agent, server, server-e2e, web) has its own Dockerfile and supporting files
 - All containers use Debian 12 base (except web which uses Jetty Alpine)
 - NetXMS packages are pinned to specific versions via `pin-package-version` script
 - Version configuration is centralized in `build.properties`
