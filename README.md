@@ -62,6 +62,12 @@ The following API key is public and intended only for tests against this fixture
 NX_API_KEY=dsly7ba3yqntvcsj6tkgi53ie4zaez6n
 ```
 
+Besides objects and DCIs, the fixture defines a DCI summary table and two object queries for the Grafana data source tests:
+
+- Summary table "Server queues": current/average queue sizes from the server's internal DCIs (values appear after the first poll, about a minute after start)
+- Object query "Nodes": IP address, host name and status of every node
+- Object query "Objects by name": class and status of objects whose name matches the `pattern` input field (`*` and `?` wildcards)
+
 ## Deployment
 
 ### Environment Setup
