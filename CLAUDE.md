@@ -40,7 +40,7 @@ make clean-pin
 ### Component Structure
 
 - Each component (agent, server, server-e2e, web) has its own Dockerfile and supporting files
-- All containers use Debian 12 base (except web which uses Jetty Alpine)
+- All containers use a Debian base (except web, which uses Jetty Alpine)
 - NetXMS packages are pinned to specific versions via `pin-package-version` script
 - Version configuration is centralized in `build.properties`
 
